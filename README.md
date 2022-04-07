@@ -43,7 +43,7 @@ dataset
 ```
 
 ## Steps to train the model:
-1. Download the project repository, and cd into it.
+1. Download the project repository, and navigate into the directory.
 ```
 $ git clone https://github.com/pradipto111/mediapipe_SignLanguage.git
 ```
