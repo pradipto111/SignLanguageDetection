@@ -139,7 +139,7 @@ Note that, the argument ```model_name``` can accept only two arguments ```resnet
 2. ### CNN model:
     1. Run the script ```test.py``` inside the ```CNN``` folder, with the following arguments:
     ```
-    python3 test.py --model <Model name resnet/mobilenet> --model_path <path to .pt file of model>
+    python3 test.py --model <Model name resnet34/mobilenet_v2> --model_path <path to .pt file of model>
     ```
 
     2. Show the hand gesture to on the webcam window which will be opened. 

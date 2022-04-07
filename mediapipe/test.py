@@ -15,6 +15,8 @@ parser.add_argument("--model_path", type=int, default=1, help = "Path of the mod
 #Label Classes
 classes = ['A','B','C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'del', 'nothing', 'space']
 
+letter = None
+
 # Main begins here
 if __name__ == "__main__":
     cap = cv2.VideoCapture(0) #Start capturing the webcame
@@ -36,6 +38,8 @@ if __name__ == "__main__":
         framergb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         result = hands.process(framergb) #process the frame with mediapipe hands pipelnine
         hand_landmarks = result.multi_hand_landmarks
+        X1 = None
+        Y1 = None
         if hand_landmarks: #locate the hand in the frame and crop it out for further processing my mediapipe
             for handLMs in hand_landmarks:
                 x_max = 0
@@ -58,6 +62,8 @@ if __name__ == "__main__":
                 y_max +=50
                 cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)
                 hand = frame[y_min:y_max, x_min:x_max]
+                X1 = x_max
+                Y1 = y_min
                 try:
                     hand = cv2.resize(hand, (200,200))
                 except:
@@ -68,7 +74,9 @@ if __name__ == "__main__":
             s = MODEL(lms) #predict
             _, preds  = torch.max(s, dim=1)
             print(classes[preds[0].item()]) #print the prediction in the terminal/command prompt window
+            letter = classes[preds[0].item()]
         
+        cv2.putText(frame, letter, (X1, Y1), cv2.FONT_HERSHEY_COMPLEX, 2, (0,255,0), 2, cv2.LINE_AA)
         cv2.imshow('webcam', frame) #display the webcam frame on the screen
     
     
