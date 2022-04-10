@@ -10,7 +10,7 @@ from utils import *
 
 #Definition of arguments for ease of access
 parser = argparse.ArgumentParser()
-parser.add_argument("--model_path", type=int, default=1, help = "Path of the model file relative to current directory")
+parser.add_argument("--model_path", type=str, default=1, help = "Path of the model file relative to current directory")
 
 #Label Classes
 classes = ['A','B','C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'del', 'nothing', 'space']
